@@ -1,0 +1,133 @@
+body{
+  background-color: #2c9db7 !important;
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+  header{
+    .vidmob-logo {
+      top: 30px;
+      left: 30px;
+    }
+    .login-in-wrapper{
+      top: 30px;
+      right: 30px;
+      label {
+        width: 154px;
+        height: 17px;
+        font-size: 14px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.2px;
+        text-align: right;
+      }
+      .login-btn{
+        width: 100px;
+        height: 34px;
+        font-size: 11px;
+        border-radius: 100px;
+        border: solid 1px #e2e6eb;
+      }
+    }
+  }
+  .form-control {
+    width: 400px;
+    border-radius: 2px;
+    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding: 30px;
+  }
+  .button{
+    width: 150px;
+    height: 50px;
+    border-radius: 100px;
+    font-size: 13px;
+    border: solid 1px #e2e6eb;
+    background-color: #2c9db7;
+  }
+  
+  .landing-page{
+    margin-bottom: 2px;
+    .form-control {
+      height: 280px;
+      .get-started {
+        height: 24px;
+        font-size: 20px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.4px;
+        text-align: left;
+        color: #283647;
+      }
+      .next-btn {
+        @extend .button
+      }
+    }
+    .card-icon-wrapper{
+      height: 100px;
+      width: 100px;
+      background-color: #2c9db7;
+      border-radius: 50%;
+    }
+    .popup-content {
+      width: auto;
+      .close-btn {
+        top: -60px;
+        right: 0;
+      }
+    }
+  }
+  .sign-up{
+    .form-control{
+      height: 420px;
+      p {
+        font-size: 14px
+      }
+      .sign-up-btn {
+        @extend .button
+      }
+      .terms-condition{
+        bottom: -60px;
+        font-size: 14px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.2px;
+        text-align: left;
+        color: #e2e6eb;
+      }
+    }
+  }
+  .company-sign-up {
+    .form-control{
+      height: 400px;
+      p {
+        color: #798898
+      }
+      svg {
+        color: orange;
+      }
+      .done-btn {
+        @extend .button
+      }
+    }
+  }
+  
+}
+.tooltip.show {
+  opacity: 1 !important;
+  font-size: 12px;
+  .tooltip-inner {
+    background-color: #dc3545 !important;
+    
+  }
+  .arrow::before{
+    border-top-color: #dc3545 !important;
+  }
+}
