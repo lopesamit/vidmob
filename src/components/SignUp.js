@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { TextField, Button} from '@material-ui/core'
+import { TextField, Button, InputLabel } from '@material-ui/core';
+import { Redirect} from 'react-router-dom';
+import { Tooltip } from 'reactstrap'
+
+
+const byPropKey = (propertyName, value) => () => ({
+    [propertyName]: value,
+});
 
 class SignUp extends Component {
     constructor(props){
@@ -7,55 +14,88 @@ class SignUp extends Component {
         this.handleSignUp = this.handleSignUp.bind(this)
 
         this.state = {
-            isExisting: true
+            isExisting: this.props.location.state.isExisting || false,
+            navigate: false,
+            companyNameExist: false,
         }
     }
-    componentDidMount(){
-        console.log(this.props.location.state)
-    }
-
+    
     handleSignUp(){
-
+        this.setState({navigate: true, companyNameExist: false})
     }
 
     render() {
+        if (this.state.navigate) {
+            return <Redirect 
+                to={{
+                    pathname:'/company-signup',
+                    state: this.state
+                }}
+            />
+        }
         return (
-            <div className="sign-up align-self-center">
-                <form className="form-control position-relative">
+            <div className="sign-up align-self-center position-relative">
+                <form className="form-control">
                     {this.state.isExisting ?
-                        <h3 className="join-team">Join the VidMob team</h3>
+                        <h3 className="join-team text-left">Join the VidMob team</h3>
                         :
-                        <h3 className="join-team">Get started on VidMob</h3>
+                        <h3 className="join-team text-left">Get started on VidMob</h3>
                     }
-                    <p>Your {this.state.isExisting? 'email is' : 'wasn\'t'} associated with an existing company. Fill out the information below to finish the setup.</p>
+                    <InputLabel className="input-label">
+                        Your email {this.state.isExisting? ' is ' : ' wasn\'t '} 
+                        associated with an existing company. Fill out the information below to finish the setup.
+                    </InputLabel>
+
                     <div className="">
-                        <TextField
-                            className="d-inline-block col-6"
-                            variant="outlined"
-                            placeholder="First Name"
-                        />
+                        <div className="d-inline-block col-6 p-0 pr-1">
+                            <TextField
+                                className="d-inline-block col"
+                                variant="outlined"
+                                placeholder="First Name"
+                                onChange={event => this.setState(byPropKey('firstName', event.target.value))}
+                                required
+                            />
+                        </div>
+                        <div className="d-inline-block col-6 p-0 pl-1">
+                            <TextField 
+                                className="d-inline-block col"
+                                variant="outlined"
+                                placeholder="Last Name"
+                                onChange={event => this.setState(byPropKey('lastName', event.target.value))}
+                            />
+                        </div>
+                    </div>
+                    <div className="display-name">
                         <TextField 
-                            className="d-inline-block col-6"
+                            className="col mt-2"
                             variant="outlined"
-                            placeholder="Last Name"
+                            placeholder="Display Name"
+                            onChange={event => this.setState(byPropKey('displayName', event.target.value))}
                         />
+                        <label className="label-optional">[optional]</label> 
                     </div>
                     <TextField 
                         className="col mt-2"
                         variant="outlined"
-                        placeholder="Display Name"
-                    />
-                    <TextField 
-                        className="col mt-2"
-                        variant="outlined"
                         placeholder="Password"
+                        type="password"
+                        onChange={event => this.setState(byPropKey('password', event.target.value))}
                     />
-                    {!this.state.isExisting ? 
-                        <TextField 
-                            className="col mt-2"
-                            variant="outlined"
-                            placeholder="Company Name"
-                        />
+                    {!this.state.isExisting ?
+                        <div>
+                            <TextField 
+                                className="col mt-2"
+                                variant="outlined"
+                                placeholder="Company Name"
+                                id="EmailError"
+                                onChange={event => this.setState(byPropKey('companyName', event.target.value))}
+                            />
+                            <Tooltip placement="top" isOpen={this.state.companyNameExist} target="EmailError">
+                                <div>
+                                    <p>That company looks like it already exists. Try to Find My Team using your work email.</p>
+                                </div>
+                            </Tooltip>
+                        </div>
                         : null
                     }
 
@@ -66,8 +106,8 @@ class SignUp extends Component {
                     >
                         Sign up
                     </Button>
-                    <p className="position-absolute terms-condition">By selecting Sign Up, you agree to our <b>Terms &amp; Conditions</b></p>
                 </form>
+                    <p className="mt-3 text-center terms-condition position-absolute">By selecting Sign Up, you agree to our <b>Terms &amp; Conditions</b></p>
             </div>
         );
     }

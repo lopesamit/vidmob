@@ -35,6 +35,8 @@ body{
   }
   .form-control {
     width: 400px;
+    height: auto;
+    overflow: auto;
     border-radius: 2px;
     box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
@@ -47,12 +49,12 @@ body{
     font-size: 13px;
     border: solid 1px #e2e6eb;
     background-color: #2c9db7;
+    outline: none;
   }
   
   .landing-page{
     margin-bottom: 2px;
     .form-control {
-      height: 280px;
       .get-started {
         height: 24px;
         font-size: 20px;
@@ -75,46 +77,85 @@ body{
       border-radius: 50%;
     }
     .popup-content {
-      width: auto;
+      width: 320px !important;
       .close-btn {
         top: -60px;
         right: 0;
+        outline: none;
+        cursor: pointer;
       }
     }
   }
   .sign-up{
     .form-control{
-      height: 420px;
-      p {
-        font-size: 14px
+      .input-label {
+        font-size: 14px;
+        text-align: left;
+        color: #798898;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        letter-spacing: -0.2px;
       }
       .sign-up-btn {
         @extend .button
       }
-      .terms-condition{
-        bottom: -60px;
-        font-size: 14px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: -0.2px;
-        text-align: left;
-        color: #e2e6eb;
+      .join-team {
+        color: #283647
       }
+
+      .display-name {
+        position: relative;
+        &:hover  .label-optional{
+          display: none;
+      }
+    }
+
+      .display-name > label{
+        position: absolute;
+        color: #a1afbd;
+        top: 39%;
+        right: 13px;
+      }
+    }
+    .terms-condition{
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.2px;
+      color: #e2e6eb;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
     }
   }
   .company-sign-up {
     .form-control{
-      height: 400px;
+      height: auto;
       p {
-        color: #798898
+        color: #798898;
+        font-size: 14px;
       }
       svg {
-        color: orange;
+        color: #e99e16;
       }
       .done-btn {
         @extend .button
+      }
+      .remove-email {
+        height: 13px;
+        width: 13px;
+        // border: 1px solid #283647
+      }
+      .multi-email-wrapper{
+        &:hover{
+          .remove-email{
+            filter: invert(0.5) sepia(87) saturate(61) hue-rotate(0deg);
+          }
+        }
       }
     }
   }

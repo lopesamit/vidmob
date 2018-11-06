@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import svg from './images/ic-large-email-generic.svg'
 
 class ExistConfirmEmail extends Component {
     constructor(props){
