@@ -98,6 +98,7 @@ class SignUp extends Component {
                                 variant="outlined"
                                 placeholder="Company Name"
                                 id="EmailError"
+                                required
                                 onChange={event => this.setState(byPropKey('companyName', event.target.value))}
                             />
                             <Tooltip placement="top" isOpen={this.state.companyNameExist} target="EmailError">

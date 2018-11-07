@@ -22,14 +22,16 @@ class LandingPage extends Component {
         };
         this.closeModal = this.closeModal.bind(this)
         this.handleNext = this.handleNext.bind(this)
+        this.closePersonalModal = this.closePersonalModal.bind(this)
     }
     componentDidMount(){
-       
+        // api calls if any
     }
   
     closeModal () {
-        this.setState({ confirmEmail: false , navigate: true})
+        this.setState({ emailType: 'confirm' , navigate: true})
     }
+
     async handleNext(event){
         event.preventDefault()
 
@@ -45,9 +47,12 @@ class LandingPage extends Component {
         }
 
         //api call to check if the email already exist
-        // if(){
-            // this.setState({emailType: 'error', error: true})
-        // }
+        // this.setState({emailType: 'error', error: true})
+        
+    }
+
+    closePersonalModal () {
+        this.setState({emailType: 'none'})
     }
     render() {
         if (this.state.navigate) {
@@ -77,9 +82,8 @@ class LandingPage extends Component {
                 <Popup
                     open={this.state.emailType === 'personal'}
                     closeOnDocumentClick
-                    onClose={this.closeModal}
                 >
-                    <PersonalEmail style={{width: '320px'}} closeModal={this.closeModal}/>
+                    <PersonalEmail state={this.state} closePersonalModal={this.closePersonalModal}/>
                
                 </Popup>
                 <TextField

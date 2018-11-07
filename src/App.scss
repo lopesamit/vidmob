@@ -78,6 +78,11 @@ body{
       .next-btn, .back-btn, .continue-btn {
         @extend .button
       }
+      .back-btn, .continue-btn{
+        font-size: 11px;
+        width: 100px
+      }
+
       .back-btn{
         background-color: #798898;
       }
@@ -85,7 +90,11 @@ body{
         width: 320px;
       }
       .personal-email{
-        width: 400px;
+        width: 390px;
+        font-size: 16px;
+        label {
+          font-size: 14px;
+        }
       }
     }
     .card-icon-wrapper{
