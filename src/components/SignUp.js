@@ -14,9 +14,17 @@ class SignUp extends Component {
         this.handleSignUp = this.handleSignUp.bind(this)
 
         this.state = {
-            isExisting: this.props.location.state.isExisting || false,
+            isAssociated: false,
             navigate: false,
             companyNameExist: false,
+        }
+    }
+
+    async componentDidMount(){
+        if(this.props.location){
+            await this.setState({
+                isAssociated: this.props.location.state.isAssociated || false,
+            })
         }
     }
     
@@ -35,14 +43,14 @@ class SignUp extends Component {
         }
         return (
             <div className="sign-up align-self-center position-relative">
-                <form className="form-control">
-                    {this.state.isExisting ?
+                <form className="form-control" onSubmit={this.handleSignUp}>
+                    {this.state.isAssociated ?
                         <h3 className="join-team text-left">Join the VidMob team</h3>
                         :
                         <h3 className="join-team text-left">Get started on VidMob</h3>
                     }
                     <InputLabel className="input-label">
-                        Your email {this.state.isExisting? ' is ' : ' wasn\'t '} 
+                        Your email {this.state.isAssociated? ' is ' : ' wasn\'t '} 
                         associated with an existing company. Fill out the information below to finish the setup.
                     </InputLabel>
 
@@ -62,6 +70,7 @@ class SignUp extends Component {
                                 variant="outlined"
                                 placeholder="Last Name"
                                 onChange={event => this.setState(byPropKey('lastName', event.target.value))}
+                                required
                             />
                         </div>
                     </div>
@@ -79,9 +88,10 @@ class SignUp extends Component {
                         variant="outlined"
                         placeholder="Password"
                         type="password"
+                        required
                         onChange={event => this.setState(byPropKey('password', event.target.value))}
                     />
-                    {!this.state.isExisting ?
+                    {!this.state.isAssociated ?
                         <div>
                             <TextField 
                                 className="col mt-2"
@@ -101,8 +111,8 @@ class SignUp extends Component {
 
                     <Button
                         className="sign-up-btn mt-3 float-right border-0 text-white"
-                        variant="contained"  
-                        onClick={this.handleSignUp}  
+                        variant="contained"
+                        type="submit"
                     >
                         Sign up
                     </Button>

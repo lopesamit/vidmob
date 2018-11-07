@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {TextField, Button, InputLabel} from '@material-ui/core'
 import Popup from "reactjs-popup";
 import ExistConfirmEmail from './ExistConfirmEmail'
+import PersonalEmail from './PersonalEmail'
 import { Tooltip } from 'reactstrap'
 import { Redirect, Link} from 'react-router-dom';
 
@@ -14,11 +15,10 @@ class LandingPage extends Component {
         super(props)
 
         this.state = {
-            isExisting: false,
-            confirmEmail: false,
-            errorModal: false,
+            isAssociated: false,
+            emailType: '',
             error: false,
-            navigate: false
+            navigate: false,
         };
         this.closeModal = this.closeModal.bind(this)
         this.handleNext = this.handleNext.bind(this)
@@ -33,15 +33,21 @@ class LandingPage extends Component {
     async handleNext(event){
         event.preventDefault()
 
-        //api call to check if the user email exist.
-        // if yes set isExisting to true
-        await this.setState({isExisting: true})
+        //check for email to be personal
+        // this.setState({emailType: 'personal'})
 
-        if(this.state.isExisting){
-            this.setState({ confirmEmail: true })
-        } else {
-            this.setState({errorModal: true, error: true})
+        //api call to check if the user email is associate with any company.
+        // if yes set isAssociated to true
+        await this.setState({isAssociated: true})
+
+        if(this.state.isAssociated){
+            this.setState({ emailType: 'confirm' })
         }
+
+        //api call to check if the email already exist
+        // if(){
+            // this.setState({emailType: 'error', error: true})
+        // }
     }
     render() {
         if (this.state.navigate) {
@@ -54,29 +60,39 @@ class LandingPage extends Component {
         }
         return (
         <div className="align-self-center landing-page">
-            <form className="form-control">
+            <form className="form-control" onSubmit={this.handleNext}>
                 <h3 className="get-started"> Get started on VidMob</h3>
                 <InputLabel 
                     className="text-left w-100"
                 > Enter your work email
                 </InputLabel>
                 <Popup
-                    open={this.state.confirmEmail}
+                    open={this.state.emailType === 'confirm'}
                     closeOnDocumentClick
                     onClose={this.closeModal}
                 >
                     <ExistConfirmEmail style={{width: '320px'}} closeModal={this.closeModal}/>
                
                 </Popup>
-                <TextField 
+                <Popup
+                    open={this.state.emailType === 'personal'}
+                    closeOnDocumentClick
+                    onClose={this.closeModal}
+                >
+                    <PersonalEmail style={{width: '320px'}} closeModal={this.closeModal}/>
+               
+                </Popup>
+                <TextField
+                    required
                     className="float-left mt-3 w-100"
                     placeholder="name@company.com"
                     variant="outlined"
                     id="EmailError"
                     error={this.state.error}
                     onChange={event => this.setState(byPropKey('email', event.target.value))}
+                    type="email"
                 />
-                <Tooltip placement="top" isOpen={this.state.errorModal} target="EmailError">
+                <Tooltip placement="top" isOpen={this.state.emailType === 'error'} target="EmailError">
                    <div>
                        <p>That email looks like it’s already taken. Do you want to 
                            <Link to='/signin' className="text-white"> <b>login</b> </Link>
@@ -89,7 +105,7 @@ class LandingPage extends Component {
                 <Button
                     className="next-btn mt-3 float-right border-0 text-white"
                     variant="contained"
-                    onClick={this.handleNext}  
+                    type="submit"
                 > Next
                 </Button>
             </form>

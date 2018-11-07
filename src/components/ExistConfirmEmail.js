@@ -17,7 +17,7 @@ class ExistConfirmEmail extends Component {
     
     render() {
         return (
-            <div className="position-relative">
+            <div className="position-relative exist-confirmation-email">
                 
                 <div className="card-icon-wrapper d-flex justify-content-center mx-auto mt-4">
                     <img src={require("./images/ic-large-email-generic.svg")} alt="card" />
