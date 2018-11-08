@@ -64,7 +64,7 @@ class LandingPage extends Component {
             />
         }
         return (
-        <div className="align-self-center landing-page">
+        <div className="align-self-center col col-lg-4 col-md-6 landing-page">
             <form className="form-control" onSubmit={this.handleNext}>
                 <h3 className="get-started"> Get started on VidMob</h3>
                 <InputLabel 

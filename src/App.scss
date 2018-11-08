@@ -34,7 +34,7 @@ body{
     }
   }
   .form-control {
-    width: 400px;
+    max-width: 400px;
     height: auto;
     overflow: auto;
     border-radius: 2px;
@@ -53,6 +53,7 @@ body{
   }
   
   .landing-page{
+    max-width: 400px;
     margin-bottom: 2px;
     .popup-content {
       width: unset !important;
@@ -87,7 +88,7 @@ body{
         background-color: #798898;
       }
       .exist-confirmation-email{
-        width: 320px;
+        max-width: 320px;
       }
       .personal-email{
         width: 390px;
