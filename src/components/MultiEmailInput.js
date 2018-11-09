@@ -13,8 +13,9 @@ class MultiEmailInput extends Component {
         emails: [],
     };
  
-    componentDidUpdate(prevState){
-        this.props.handleEmail(this.state.emails)
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.emails.length !== this.state.emails.length)
+            this.props.handleEmail(this.state.emails)
     }
     
     render() {

@@ -5,6 +5,7 @@ import ExistConfirmEmail from './ExistConfirmEmail'
 import PersonalEmail from './PersonalEmail'
 import { Tooltip } from 'reactstrap'
 import { Redirect, Link} from 'react-router-dom';
+import * as routes from '../constants/routes'
 
 const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value,
@@ -58,7 +59,7 @@ class LandingPage extends Component {
         if (this.state.navigate) {
             return <Redirect 
                 to={{
-                    pathname:'/signup',
+                    pathname: routes.SIGN_UP,
                     state: this.state
                 }}
             />

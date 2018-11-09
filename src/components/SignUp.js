@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TextField, Button, InputLabel } from '@material-ui/core';
 import { Redirect} from 'react-router-dom';
 import { Tooltip } from 'reactstrap'
-
+import * as routes from '../constants/routes'
 
 const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value,
@@ -36,7 +36,7 @@ class SignUp extends Component {
         if (this.state.navigate) {
             return <Redirect 
                 to={{
-                    pathname:'/company-signup',
+                    pathname: routes.COMPANY_SIGN_UP,
                     state: this.state
                 }}
             />

@@ -25,8 +25,8 @@ class CompanySignUp extends Component {
     componentDidMount(){
 
     }
-    handleChange = async (event) => {
-        await this.setState({ value: event.target.value });
+    handleChange = (event) => {
+        this.setState({ value: event.target.value });
     };
     
     handleSubmit(event){
@@ -34,8 +34,7 @@ class CompanySignUp extends Component {
     }
 
     handleEmail(emails){
-        if(this.state.emails.length === emails.length)
-            this.setState({emails: emails})
+        this.setState({emails: emails})
     }
 
     render() {
