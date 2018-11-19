@@ -1,7 +1,7 @@
 {
   "main.css": "/vidmob/static/css/main.8d68e708.chunk.css",
-  "main.js": "/vidmob/static/js/main.1746f784.chunk.js",
-  "main.js.map": "/vidmob/static/js/main.1746f784.chunk.js.map",
+  "main.js": "/vidmob/static/js/main.beeb29fa.chunk.js",
+  "main.js.map": "/vidmob/static/js/main.beeb29fa.chunk.js.map",
   "static/css/1.91ea941a.chunk.css": "/vidmob/static/css/1.91ea941a.chunk.css",
   "static/js/1.4af2462a.chunk.js": "/vidmob/static/js/1.4af2462a.chunk.js",
   "static/js/1.4af2462a.chunk.js.map": "/vidmob/static/js/1.4af2462a.chunk.js.map",
@@ -13,6 +13,6 @@
   "static/media/ic-large-email-generic.svg": "/vidmob/static/media/ic-large-email-generic.032abe26.svg",
   "static/css/1.91ea941a.chunk.css.map": "/vidmob/static/css/1.91ea941a.chunk.css.map",
   "index.html": "/vidmob/index.html",
-  "precache-manifest.6e872f265b67d2d3fbd4bd532f1788b6.js": "/vidmob/precache-manifest.6e872f265b67d2d3fbd4bd532f1788b6.js",
+  "precache-manifest.2c5100927f8d9489f153ab705f38a70a.js": "/vidmob/precache-manifest.2c5100927f8d9489f153ab705f38a70a.js",
   "service-worker.js": "/vidmob/service-worker.js"
 }

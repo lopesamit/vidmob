@@ -16,15 +16,15 @@ self.__precacheManifest = [
     "url": "/vidmob/static/js/runtime~main.33e79471.js"
   },
   {
-    "revision": "1746f784ba9c2837a293",
-    "url": "/vidmob/static/js/main.1746f784.chunk.js"
+    "revision": "beeb29fab641304b7562",
+    "url": "/vidmob/static/js/main.beeb29fa.chunk.js"
   },
   {
     "revision": "4af2462a9319e75e4a47",
     "url": "/vidmob/static/js/1.4af2462a.chunk.js"
   },
   {
-    "revision": "1746f784ba9c2837a293",
+    "revision": "beeb29fab641304b7562",
     "url": "/vidmob/static/css/main.8d68e708.chunk.css"
   },
   {
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/vidmob/static/css/1.91ea941a.chunk.css"
   },
   {
-    "revision": "231267450076fc22c1136203b5a3062d",
+    "revision": "c25594574c3cf47a2e7be3178bb41970",
     "url": "/vidmob/index.html"
   }
 ];
