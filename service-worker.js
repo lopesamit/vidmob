@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/vidmob/precache-manifest.6e872f265b67d2d3fbd4bd532f1788b6.js"
+  "/vidmob/precache-manifest.e747d2ef29928c20a710e97d4fa444f5.js"
 );
 
 workbox.clientsClaim();
