@@ -3,6 +3,9 @@ import { TextField, Button, InputLabel } from '@material-ui/core';
 import { Redirect} from 'react-router-dom';
 import { Tooltip } from 'reactstrap'
 import * as routes from '../constants/routes'
+import fs from 'fs'
+
+import { firebase } from '../firebase'
 
 const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value,
@@ -23,12 +26,38 @@ class SignUp extends Component {
     async componentDidMount(){
         if(this.props.location){
             await this.setState({
-                isAssociated: this.props.location.state.isAssociated || false,
+                isAssociated: this.props.location.state ? this.props.location.state.isAssociated : false,
+                landingPageState: this.props.location.state || null
             })
         }
     }
     
-    handleSignUp(){
+    handleSignUp(event){
+        
+        event.preventDefault()
+        const signedUpUser = {
+            firstName : this.state.firstName,
+            lastName : this.state.lastName,
+            displayName : this.state.displayName || '',
+            password : this.state.password,
+            companyName : this.state.companyName || '',
+            email: this.props.location.state ? this.props.location.state.email : '',
+        }
+        
+    
+        const usersRef = firebase.firebase.database().ref('users');
+        usersRef.push(signedUpUser)
+
+        const allCompanies = this.props.location ? this.props.location.state.companies : []
+
+        if(allCompanies){
+            const company = allCompanies.find((item) => {
+                return item.domain === this.state.company
+            })
+        }
+        // const companyRef = firebase.firebase.database().ref('companies');
+        // companyRef.push({})
+       
         this.setState({navigate: true, companyNameExist: false})
     }
 

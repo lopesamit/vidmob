@@ -15,7 +15,6 @@ class PersonalEmail extends Component {
         this.handleBack = this.handleBack.bind(this)
     }
     componentDidMount(){
-        console.log(this.props)
         this.setState({prevState: this.props.state})
     }
     
@@ -26,7 +25,6 @@ class PersonalEmail extends Component {
         if (typeof this.props.closePersonalModal === 'function') {
             this.props.closePersonalModal();
         }
-    
     }
     render() {
         if(this.state.navigate){

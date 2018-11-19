@@ -7,6 +7,9 @@ import { Tooltip } from 'reactstrap'
 import { Redirect, Link} from 'react-router-dom';
 import * as routes from '../constants/routes'
 
+import { firebase } from '../firebase'
+
+
 const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value,
 });
@@ -20,13 +23,48 @@ class LandingPage extends Component {
             emailType: '',
             error: false,
             navigate: false,
+            users: [],
+            companies: [],
         };
         this.closeModal = this.closeModal.bind(this)
         this.handleNext = this.handleNext.bind(this)
         this.closePersonalModal = this.closePersonalModal.bind(this)
     }
-    componentDidMount(){
+    async componentDidMount(){
         // api calls if any
+        const users = []
+        const companies = []
+
+        // await Users.users.map((item) =>{
+        //     users.push(item)
+        // })
+
+
+        // await Companies.companies.map((item) =>{
+        //     companies.push(item)
+        // })
+
+        const usersRef = firebase.firebase.database().ref('users').orderByChild('email')
+        await usersRef.on("value", (snapshot, error) => {
+            if(snapshot.val()){
+                Object.values(snapshot.val()).map((item) => {
+                    users.push(item)
+                })
+            }
+        })
+        const companyRef = firebase.firebase.database().ref('companies').orderByChild('email')
+        await companyRef.on("value", (snapshot, error) => {
+            if(snapshot.val()){
+                Object.values(snapshot.val()).map((item) => {
+                    companies.push(item)
+                })
+            }
+        })
+
+        await this.setState({
+            users: users,
+            companies: companies
+        })
     }
   
     closeModal () {
@@ -35,21 +73,44 @@ class LandingPage extends Component {
 
     async handleNext(event){
         event.preventDefault()
-
+        const domainFromEmail = this.state.email.split('@')[1]
         //check for email to be personal
         // this.setState({emailType: 'personal'})
 
-        //api call to check if the user email is associate with any company.
+        // api call to check if the user email is associate with any company.
         // if yes set isAssociated to true
-        await this.setState({isAssociated: true})
-
-        if(this.state.isAssociated){
-            this.setState({ emailType: 'confirm' })
-        }
-
         //api call to check if the email already exist
-        // this.setState({emailType: 'error', error: true})
+        // console.log(item)
+        // if( item === domainFromEmail ){
+        //     this.setState({isAssociated: true})
+        //     console.log("associated to company")
+        //     return item
+        // } else {
+        //     console.log("not associated to company")
+        //     this.setState({isAssociated: false})
+        //     return item
+        // }
+
         
+        const assosciatedUser = await this.state.companies.find((item) => {
+            return item.domain === domainFromEmail
+        })
+        const existingEmail = await this.state.users.find((item) => {
+            return item.email === this.state.email
+        })
+       
+
+        // await this.state.users.map((item) => {
+        //     console.log(item.email)
+        // })
+        
+        if( existingEmail ){
+            this.setState({ emailType: 'error', error: true})
+        } else if(assosciatedUser){
+            this.setState({ emailType: 'confirm', isAssociated: true })
+        } else {
+            this.setState({ emailType: 'personal'})
+        }
     }
 
     closePersonalModal () {
