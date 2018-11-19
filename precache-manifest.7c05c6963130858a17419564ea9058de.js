@@ -16,23 +16,23 @@ self.__precacheManifest = [
     "url": "/vidmob/static/js/runtime~main.33e79471.js"
   },
   {
-    "revision": "fc690ee93fa11d1901b4",
-    "url": "/vidmob/static/js/main.fc690ee9.chunk.js"
+    "revision": "5c7d852e6d9e6a219928",
+    "url": "/vidmob/static/js/main.5c7d852e.chunk.js"
   },
   {
-    "revision": "60d90591758961f3a8b7",
-    "url": "/vidmob/static/js/1.60d90591.chunk.js"
+    "revision": "a494d41463a0870a6190",
+    "url": "/vidmob/static/js/1.a494d414.chunk.js"
   },
   {
-    "revision": "fc690ee93fa11d1901b4",
-    "url": "/vidmob/static/css/main.4ff2c07d.chunk.css"
+    "revision": "5c7d852e6d9e6a219928",
+    "url": "/vidmob/static/css/main.2a395df8.chunk.css"
   },
   {
-    "revision": "60d90591758961f3a8b7",
-    "url": "/vidmob/static/css/1.d138a09c.chunk.css"
+    "revision": "a494d41463a0870a6190",
+    "url": "/vidmob/static/css/1.242c7ffc.chunk.css"
   },
   {
-    "revision": "a780b2b24840621573df86cb24a2561e",
+    "revision": "5eb5b807da7a6c61d8173a5dd593eb24",
     "url": "/vidmob/index.html"
   }
 ];
