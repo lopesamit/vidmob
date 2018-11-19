@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/vidmob/static/css/1.91ea941a.chunk.css"
   },
   {
-    "revision": "01b1da73c72a74f0ebaf70fc48342619",
+    "revision": "231267450076fc22c1136203b5a3062d",
     "url": "/vidmob/index.html"
   }
 ];
