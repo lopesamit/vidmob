@@ -45,20 +45,27 @@ class SignUp extends Component {
         }
         
     
-        const usersRef = firebase.firebase.database().ref('users');
-        usersRef.push(signedUpUser)
-
+        
         const allCompanies = this.props.location ? this.props.location.state.companies : []
-
+        
         if(allCompanies){
             const company = allCompanies.find((item) => {
-                return item.domain === this.state.company
+                return item.domain.split('.')[0] === this.state.companyName.toLowerCase()
             })
+            if(company){
+                this.setState({companyNameExist: true})
+            } else {
+                const usersRef = firebase.firebase.database().ref('users');
+                usersRef.push(signedUpUser)
+                const companyRef = firebase.firebase.database().ref('companies');
+                companyRef.push({domain: this.state.companyName + ".com"})
+                this.setState({navigate: true, companyNameExist: false})
+            }
         }
+
         // const companyRef = firebase.firebase.database().ref('companies');
         // companyRef.push({})
        
-        this.setState({navigate: true, companyNameExist: false})
     }
 
     render() {
